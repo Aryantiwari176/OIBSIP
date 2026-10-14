@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Ticket | RailBook</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f6fc;
+            color: #1e293b;
+        }
+
+        nav {
+            background: #123b70;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav h2 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px #00000012;
+        }
+
+        h1 {
+            color: #b91c1c;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #991b1b;
+        }
+
+        #result {
+            display: none;
+            margin-top: 22px;
+            padding: 16px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .note {
+            color: #64748b;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 22px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>RailBook</h2>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="pnr.html">Check PNR</a>
+            <a href="login.html">Login</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+
+            <h1>Cancel Ticket</h1>
+
+            <p class="subtitle">
+                Enter your 10-digit PNR number to start the cancellation process.
+            </p>
+
+            <form id="cancelForm">
+                <label for="pnr">PNR Number</label>
+
+                <input
+                    type="text"
+                    id="pnr"
+                    placeholder="Enter 10-digit PNR number"
+                    maxlength="10"
+                    inputmode="numeric"
+                    pattern="[0-9]{10}"
+                    required
+                >
+
+                <button type="submit">Request Cancellation</button>
+            </form>
+
+            <div id="result" role="status" aria-live="polite"></div>
+
+            <p class="note">
+                Demonstration only. No real ticket will be cancelled.
+                Java backend integration is required for actual cancellation.
+            </p>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2026 RailBook | Online Reservation System
+    </footer>
+
+    <script>
+        const cancelForm = document.getElementById("cancelForm");
+        const pnrInput = document.getElementById("pnr");
+        const result = document.getElementById("result");
+
+        pnrInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10);
+        });
+
+        cancelForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const pnr = pnrInput.value.trim();
+
+            result.style.display = "block";
+
+            if (!/^[0-9]{10}$/.test(pnr)) {
+                result.style.background = "#fee2e2";
+                result.style.color = "#991b1b";
+                result.textContent = "Please enter a valid 10-digit PNR number.";
+                return;
+            }
+
+            result.style.background = "#fef3c7";
+            result.style.color = "#92400e";
+            result.textContent =
+                "PNR " + pnr +
+                " entered. Cancellation is not processed yet. Connect the Java backend to cancel a saved reservation.";
+        });
+    </script>
+
+</body>
+</html>

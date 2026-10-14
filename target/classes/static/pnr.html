@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check PNR Status | RailBook</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f6fc;
+            color: #1e293b;
+        }
+
+        nav {
+            background: #123b70;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav h2 {
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 65px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px #00000012;
+        }
+
+        h1 {
+            color: #123b70;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #123b70;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        .note {
+            margin-top: 22px;
+            color: #64748b;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+
+        @media (max-width: 500px) {
+            nav {
+                padding: 18px 5%;
+            }
+
+            nav a {
+                margin-left: 0;
+                margin-right: 12px;
+            }
+
+            .container {
+                margin: 30px auto;
+            }
+
+            .card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h2>RailBook</h2>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+
+            <h1>Check PNR Status</h1>
+
+            <p class="subtitle">
+                Enter your 10-digit PNR number to check your reservation details.
+            </p>
+
+            <form id="pnrForm">
+                <label for="pnr">PNR Number</label>
+
+                <input
+                    type="text"
+                    id="pnr"
+                    name="pnr"
+                    placeholder="Enter 10-digit PNR number"
+                    maxlength="10"
+                    inputmode="numeric"
+                    pattern="[0-9]{10}"
+                    required
+                >
+
+                <button type="submit">Check Status</button>
+            </form>
+
+            <div id="result" role="status" aria-live="polite"></div>
+
+            <p class="note">
+                Note: This is a project demonstration page.
+                Live railway PNR information is not connected yet.
+            </p>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2026 RailBook | Online Reservation System
+    </footer>
+
+    <script>
+        const pnrForm = document.getElementById("pnrForm");
+        const pnrInput = document.getElementById("pnr");
+        const result = document.getElementById("result");
+
+        pnrInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10);
+        });
+
+        pnrForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const pnr = pnrInput.value.trim();
+
+            result.style.display = "block";
+
+            if (!/^[0-9]{10}$/.test(pnr)) {
+                result.style.background = "#fee2e2";
+                result.style.color = "#991b1b";
+                result.textContent = "Please enter a valid 10-digit PNR number.";
+                return;
+            }
+
+            result.style.background = "#dbeafe";
+            result.style.color = "#1e40af";
+            result.textContent =
+                "PNR entered successfully: " + pnr +
+                ". Actual reservation status will be available after Java backend integration.";
+        });
+    </script>
+
+</body>
+</html>

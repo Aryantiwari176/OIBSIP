@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | RailBook</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(120deg, #123b72, #2877bd);
+            padding: 20px;
+        }
+
+        .signup-box {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px #00000030;
+        }
+
+        h1 {
+            text-align: center;
+            color: #123b72;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 13px;
+            border: none;
+            border-radius: 6px;
+            background: #f59e0b;
+            color: #172554;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bottom {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-box">
+        <h1>🚆 RailBook</h1>
+        <p class="subtitle">Create your account</p>
+
+        <form id="signupForm">
+            <label for="name">Full Name</label>
+            <input id="name" type="text"
+                   placeholder="Enter your full name" required>
+
+            <label for="email">Email Address</label>
+            <input id="email" type="email"
+                   placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password"
+                   placeholder="Create a password"
+                   minlength="8" required>
+
+            <button type="submit">Create Account</button>
+            <p id="message" role="status"></p>
+        </form>
+
+        <p class="bottom">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+        <p class="bottom">
+            <a href="index.html">Back to Home</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById("signupForm")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                document.getElementById("message").textContent =
+                    "Signup form ready. Database connection will be added next.";
+            });
+    </script>
+</body>
+</html>

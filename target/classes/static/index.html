@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailBook - Online Reservation System</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background: #f3f6fb; color: #172554; }
+        header { background: #123b72; color: white; padding: 20px 7%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        header h2 { font-size: 27px; }
+        nav a { color: white; text-decoration: none; margin-left: 15px; font-weight: bold; }
+        .hero { background: linear-gradient(120deg, #123b72, #2877bd); color: white; padding: 65px 7% 85px; text-align: center; }
+        .hero h1 { font-size: 38px; margin-bottom: 15px; }
+        .hero p { line-height: 1.6; }
+        .booking { background: white; max-width: 1000px; margin: -35px auto 40px; padding: 28px; border-radius: 12px; box-shadow: 0 5px 20px #00000018; }
+        .booking h2 { margin-bottom: 22px; }
+        .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        input, select { width: 100%; padding: 13px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 15px; }
+        button { background: #f59e0b; color: #172554; border: none; padding: 14px 22px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .search-btn { width: 100%; margin-top: 22px; }
+        #message { margin-top: 15px; line-height: 1.5; overflow-wrap: anywhere; }
+        .features { padding: 10px 7% 50px; text-align: center; }
+        .feature-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 25px; }
+        .feature { background: white; padding: 25px 15px; border-radius: 10px; box-shadow: 0 3px 12px #0000000d; }
+        .feature h3 { margin-bottom: 10px; }
+        footer { background: #123b72; color: white; padding: 20px; text-align: center; }
+        @media (max-width: 650px) {
+            header { flex-direction: column; }
+            nav a { margin: 0 5px; }
+            .hero h1 { font-size: 29px; }
+            .fields, .feature-list { grid-template-columns: 1fr; }
+            .booking { margin-left: 15px; margin-right: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>🚆 RailBook</h2>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="pnr.html">PNR Status</a>
+            <a href="cancel.html">Cancel Ticket</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to RailBook</h1>
+        <p>Book your journey easily and manage your reservations in one place.</p>
+    </section>
+
+    <section class="booking">
+        <h2>Search Your Journey</h2>
+        <form id="searchForm">
+            <div class="fields">
+                <div>
+                    <label for="source">From Station</label>
+                    <input id="source" type="text" placeholder="Enter source station" required>
+                </div>
+                <div>
+                    <label for="destination">To Station</label>
+                    <input id="destination" type="text" placeholder="Enter destination station" required>
+                </div>
+                <div>
+                    <label for="date">Journey Date</label>
+                    <input id="date" type="date" required>
+                </div>
+                <div>
+                    <label for="travelClass">Travel Class</label>
+                    <select id="travelClass">
+                        <option value="Sleeper">Sleeper</option>
+                        <option value="AC">AC</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
+            </div>
+            <button class="search-btn" type="submit">Search Journey</button>
+            <p id="message" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <section class="features">
+        <h2>Your Journey, Made Simple</h2>
+        <div class="feature-list">
+            <div class="feature">
+                <h3>🎫 Easy Booking</h3>
+                <p>Enter journey details to get started.</p>
+            </div>
+            <div class="feature">
+                <h3>🔎 PNR Status</h3>
+                <p>Find your reservation using its PNR number.</p>
+            </div>
+            <div class="feature">
+                <h3>❌ Cancellation</h3>
+                <p>Manage your existing reservations.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>RailBook | Online Reservation System | Student Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
